@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "imports": {
+    "#config": "./src/config/index.js",
+    "#controllers/*": "./src/controllers/*.js",
+    "#models/*": "./src/models/*.js",
+    "#routes/*": "./src/routes/*.js",
+    "#utils/*": "./src/utils/*.js",
+    "#services/*": "./src/services/*.js",
+    "#validators/*": "./src/validators/*.js",
+    "#middleware/*": "./src/middleware/*.js"
+  },
   "scripts": {
     "dev": "node --watch src/index.js",
     "lint": "eslint .",
@@ -27,10 +37,18 @@
   "homepage": "https://github.com/AbrhamDemsew/acquisitions-api#readme",
   "dependencies": {
     "@supabase/server": "^1.8.0",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
     "dotenv": "^18.0.3",
     "drizzle-orm": "^0.45.3",
     "express": "^5.2.1",
-    "postgres": "^3.4.9"
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.12.1",
+    "postgres": "^3.4.9",
+    "winston": "^3.19.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
