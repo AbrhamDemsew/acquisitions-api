@@ -14,25 +14,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
-app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
-
-const PORT = process.env.PORT || 3000;
+app.use(
+  morgan('combined', {
+    stream: { write: message => logger.info(message.trim()) },
+  })
+);
 
 app.get('/', (req, res) => {
   logger.info('Received request to root endpoint');
   res.status(200).send('hello from acquisitions');
 });
 
-const uptime = process.uptime();
-
 app.get('/health', (req, res) => {
-  res.status(200).json({status: 'OK', timestamp: new Date().toISOString()}, uptime);
-})
+  res.status(200).json({
+    status: 'OK',
+    uptime: `${process.uptime().toFixed(2)}s`,
+    timestamp: new Date().toISOString(),
+  });
+});
 
 app.get('/api', (req, res) => {
-  res.status(200).json({message: 'Acquisitions API is running' });
-})
+  res.status(200).json({ message: 'Acquisitions API is running' });
+});
 
 app.use('/api/auth', authRoutes);
 
